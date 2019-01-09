@@ -14,6 +14,9 @@ version 2.1.2
 new options added
 ProgressBar: set true or false to enable or disable progress bar
 autoPlay: set true or false to enable or disable auto sliding
+
+#20190109: new options added
+opmenu: set true or false to enable or diable the option menu 
 */
 (function($){
    var TikslusCaraousel = function(element, options)
@@ -46,6 +49,7 @@ autoPlay: set true or false to enable or disable auto sliding
 				navIcons:true, // new in version 2.0
 				ProgressBar:true, //new in 2.1
 				autoPlay:true,//new in 2.1
+				opmenu:true,//#20190109
 							
             };
            
@@ -556,7 +560,9 @@ carousel.find('.msg').hide().css({top:"-100px"});
 			}
 			carousel.append("<div class='msg'></div>");
 			 carousel.append("<div class='nav_left'><span>" + options.prev + "</span></div><div class='nav_right'><span>" + options.next + "</span></div>");
-			carousel.append("<div class='op'><div class='stats'></div><ul><li><a href='#' class='fullscreenbutton responsive_img'></a></li><li><a href='#' class='pausebutton responsive_img'></a></li></ul></div>");
+			if (options.opmenu==true){
+				carousel.append("<div class='op'><div class='stats'></div><ul><li><a href='#' class='fullscreenbutton responsive_img'></a></li><li><a href='#' class='pausebutton responsive_img'></a></li></ul></div>");
+			}
 			//position next,prev button to center
 	    
 		//error handling

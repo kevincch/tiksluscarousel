@@ -17,6 +17,8 @@ autoPlay: set true or false to enable or disable auto sliding
 
 #20190109: new options added
 opmenu: set true or false to enable or diable the option menu 
+
+#20190109a: bugfix "e.relatedTarget.tagName is null"
 */
 (function($){
    var TikslusCaraousel = function(element, options)
@@ -723,8 +725,12 @@ if(isNaN(options.captionAnimationInterval) || options.captionAnimationInterval<=
 			
 			}).mouseleave(function(e){
 		
-			if(e.relatedTarget.tagName=="a" || e.relatedTarget.tagName=="A"){e.preventDefault();}else{
-			carousel.find(".op").fadeOut("fast");}
+			//#20190109a
+			if (e.relatedTarget !== null){
+				if(e.relatedTarget.tagName=="a" || e.relatedTarget.tagName=="A"){e.preventDefault();}else{
+				carousel.find(".op").fadeOut("fast");}
+			}		
+			
 			if(options.navIcons==true){
 			carousel.find(".nav_right").stop().animate({right:-20,opacity:0.8},1000);
 			carousel.find(".nav_left").stop().animate({left:-20,opacity:0.8},1000);
